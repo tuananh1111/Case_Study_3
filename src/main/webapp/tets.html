@@ -1,0 +1,174 @@
+<!--<%&#45;&#45;-->
+<!--Created by IntelliJ IDEA.-->
+<!--User: Pro 2004-->
+<!--Date: 11/6/2020-->
+<!--Time: 8:07 AM-->
+<!--To change this template use File | Settings | File Templates.-->
+<!--&#45;&#45;%>-->
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" %>-->
+<!--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplement Building Muscle</title>
+</head>
+
+<style>
+    body{
+        font-family: Arial, Tahoma;
+        font-size: 12px;
+    }
+
+    #main{
+        width: 1000px;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #head{
+        height: 100px;
+        background-color: #F5F5F5;
+        border: 1px solid #CDCDCD;
+        margin-bottom:5px;
+    }
+
+    #head-link{
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid #CDCDCD;
+        background-color: #F5F5F5;
+        margin-bottom:5px;
+        clear: both;
+    }
+    #left{
+        width: 150px;
+        min-height: 400px;
+        border: 1px solid #CDCDCD;
+        float:left;
+        background-color: #004C00;
+        margin-bottom: 5px;
+    }
+
+    #content{
+        width: 600px;
+        min-height: 400px;
+        border: 1px solid #CDCDCD;
+        float:left;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    #right{
+        width: 234px;
+        min-height: 400px;
+        border: 1px solid #CDCDCD;
+        float:right;
+        margin-bottom: 5px;
+    }
+
+    #footer{
+        height: 50px;
+        clear: both;
+        border: 1px solid #CDCDCD;
+        background-color: #F8F8FF;
+    }
+    #menu{
+        height: 30px;
+        padding:0;
+        margin:0;
+        background-color: #000000;
+        border: 1px solid #CDCDCD;
+    }
+
+    #menu ul, #menu li{
+        padding:0;
+        margin:0;
+    }
+
+    #menu li{
+        position: relative;
+        float: left;
+        list-style: none;
+        margin: 0;
+        padding:0;
+    }
+
+    #menu li a{
+        width:100px;
+        height: 30px;
+        display: block;
+        text-decoration:none;
+        text-align: center;
+        line-height: 30px;
+        background-color: black;
+        color: white;
+    }
+
+    #menu ul ul li a{
+        width: 200px;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    #menu li a:hover{
+        background-color: red;
+    }
+
+    #menu ul ul{
+        position: absolute;
+        top: 30px;
+        left: 15px;
+        visibility: hidden;
+    }
+
+    #menu ul li:hover ul{
+        visibility: visible;
+    }
+</style>
+<body>
+<div id="main">
+    <div id="head">
+        <div id="logo"><h1>SUPPLEMENT</h1></div>
+        <div id="supplement"> <h2>Logo</h2></div>
+    </div>
+    <div id="head-link">
+        <div id="menu">
+            <ul>
+
+                <li><a href="#">Menu</a>
+                    <ul>
+                        <li><a href="#">Chức năng 1</a></li>
+                        <li><a href="#">Chức năng 1</a></li>
+                        <li><a href="#">Chức năng 1e</a></li>
+                        <li><a href="#">Chức năng 1</a></li>
+                        <li><a href="#">Chức năng 1</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Select </a>
+                    <ul>
+                        <li><a href="#">lựa chọn 1</a></li>
+                        <li><a href="#">lựa chọn 1</a></li>
+                        <li><a href="#">lựa chọn 1</a></li>
+                        <li><a href="#">lựa chọn 1</a></li>
+                        <li><a href="#">lựa chọn 1</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Tăng cân</a></li>
+                <li><a href="#">Tăng sức mạnh</a></li>
+
+            </ul>
+        </div>
+        <div id="search"></div>
+        <div></div>
+    </div>
+    <div id="left"></div>
+    <div id="content"></div>
+    <div id="right"></div>
+    <div id="footer"></div>
+</div>
+</body>
+</html>
