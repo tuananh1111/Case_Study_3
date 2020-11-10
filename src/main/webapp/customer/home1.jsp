@@ -89,16 +89,48 @@
 </style>
 <body>
 <div id="main">
-    <div id="head" class="navbar" style="background-color: yellowgreen">
-        <div id="logo"><h1 id="supplement">SUPPLEMENT SHOP</h1></div>
-        <div><a href="/home"><img src="image/sup.png" alt="LOGO" style="width: 80px; height: 80px"></a></div>
-        <div>
-            <form class="form-inline my-2 my-lg-0" action="/home?action=search" method="post">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                       name="search">
-                <button type="submit" class="btn btn-outline-info">SEARCH</button>
-            </form>
-        </div>
+<%--    <div id="head" class="navbar" style="background-color: yellowgreen">--%>
+<%--        <div id="logo"><h1 id="supplement">SUPPLEMENT SHOP</h1></div>--%>
+<%--        <div><a href="/home"><img src="image/sup.png" alt="LOGO" style="width: 80px; height: 80px"></a></div>--%>
+<%--        <div>--%>
+<%--            <form class="form-inline my-2 my-lg-0" action="/home?action=search" method="post">--%>
+<%--                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"--%>
+<%--                       name="search">--%>
+<%--                <button type="submit" class="btn btn-outline-info">SEARCH</button>--%>
+<%--            </form>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+    <div id="head">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: green">
+            <!-- Image and text -->
+            <nav class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="image/sup.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                    SUPPLEMENT SHOP
+                </a>
+            </nav>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" method="post" action="/home?action=search">
+                    <input class="form-control mr-sm-2" type="search" name="search"  placeholder="Tên sản phẩm" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                </form>
+                <!-- Button trigger modal -->
+                <div>
+                    <a href="/home?action=login" class="btn btn-outline-primary">Đăng nhập</a>
+                </div>
+            </div>
+        </nav>
     </div>
     <div id="head-link">
         <div id="menu">
@@ -121,7 +153,7 @@
         </ul>
     </div>
     <div class="container" id="content">
-        <p style="margin-top: 50px">SẢN PHẨM TẠI <b style="color: red">Supplement Shop</b></p>
+        <p style="margin-top: 50px">SẢN PHẨM TẠI <b style="color: red">Supplement Shop (${listSupplement.size()} products)</b></p>
         <hr>
         <div class="row">
             <c:forEach var="supplement" items='${requestScope["listSupplement"]}'>
@@ -135,6 +167,37 @@
                             <p>Khối lượng: <c:out value="${supplement.getMass()}"/> KG</p>
                             <p>Giá tiền: <c:out value="${supplement.getPrice()}"/> VNĐ</p>
                             <p><a href="/home?action=view&id=${supplement.getId()}">Chi tiết sản phẩm</a></p>
+                            <a href="/home?action=buy&id=${supplement.getId()}"><input type="submit" class="btn btn-outline-primary" value="Mua"></a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#createCategoryModal">
+                                Xem chi tiết
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="createModalLabel">Thông tin sản phẩm</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Thông tin sản phẩm:</p>
+                                            <form method="post" action="/supplement?action=view">
+                                                <div class="md-form mb-5">
+                                                    <input type="text" name="newInputName">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr>
                     </div>

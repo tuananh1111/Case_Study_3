@@ -24,6 +24,7 @@ public class SupplementServlet extends HttpServlet {
         service= new SupplementService();
     }
 
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -133,8 +134,8 @@ public class SupplementServlet extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
     private void  editSupplement(HttpServletRequest request, HttpServletResponse response){
         Integer id=Integer.parseInt( request.getParameter("id"));
         String name = request.getParameter("name");
@@ -160,7 +161,11 @@ public class SupplementServlet extends HttpServlet {
     }
 
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) {
+        List<TypeOfSupplement> list= service.selectAllType();
+        List<Company> list1= service.selectAllCompany();
         RequestDispatcher dispatcher= request.getRequestDispatcher("supplement/create.jsp");
+        request.setAttribute("listCompany", list1);
+        request.setAttribute("listType", list);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -169,6 +174,7 @@ public class SupplementServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     private  void insertSup( HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
         String image = request.getParameter("image");

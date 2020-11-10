@@ -36,8 +36,28 @@ public class CustomerServlet extends HttpServlet {
             case "search":
                 searchSupplement(request, response);
                 break;
+            case "login":
+                loginCustomer(request, response);
+                break;
             default:
                 break;
+        }
+    }
+
+    private void loginCustomer(HttpServletRequest request, HttpServletResponse response) {
+        String name= request.getParameter("username");
+        String password= request.getParameter("password");
+        List<Supplement> list= service.selectAllSupplement();
+        if (name.equals("admin") && password.equals("admin")){
+            RequestDispatcher dispatcher= request.getRequestDispatcher("supplement/list.jsp");
+            try {
+                request.setAttribute("listSupplement",list);
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -94,11 +114,39 @@ public class CustomerServlet extends HttpServlet {
             case "asc":
                 selectAsc(request, response);
                 break;
+            case "login":
+                showFormLogin(request,response);
+                break;
+            case "register":
+                showRegister(request,response);
+                break;
             default:
                 listSupplement(request, response);
                 break;
         }
 
+    }
+
+    private void showRegister(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher= request.getRequestDispatcher("customer/register.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showFormLogin(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher= request.getRequestDispatcher("customer/login.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void selectBpi(HttpServletRequest request, HttpServletResponse response) {

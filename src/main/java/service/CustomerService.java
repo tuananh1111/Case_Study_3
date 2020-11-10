@@ -78,6 +78,9 @@ public class CustomerService  implements CService{
         return type;
 
     }
+    public void insertCustomer(){
+
+    }
     public List<Supplement> selectAllSupplement(){
         List<Supplement> list= new ArrayList<>();
         Connection connection= getConnection();

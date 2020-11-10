@@ -22,6 +22,8 @@ public class SupplementService implements SService {
     private static final String DELETE_SUPPLEMENT_PROCEDURE= "{call deleteSupplement(?)}";
     private static final String SEARCH_SUPPLEMENT_PROCEDURE= "{call searchSupplement(?)";
     private static final  String SEARCH= "select * from supplement where supplement.name_sup  like concat('%',?,'%');";
+    private  static final String SELECT_COMPANY="select * from company;";
+    private  static final String SELECT_TYPE="select * from typeofsup;";
 
 
 
@@ -36,6 +38,41 @@ public class SupplementService implements SService {
             throwables.printStackTrace();
         }
         return connection;
+    }
+    public List<Company> selectAllCompany(){
+        List<Company> list= new ArrayList<>();
+        Connection connection= getConnection();
+        try {
+            PreparedStatement preparedStatement= connection.prepareStatement(SELECT_COMPANY);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String id= resultSet.getString("company_id");
+                String name= resultSet.getString("company_name");
+                String address= resultSet.getString("company_address");
+                list.add(new Company(id, name, address));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }return list;
+    }
+
+    public List<TypeOfSupplement> selectAllType(){
+        List<TypeOfSupplement> list= new ArrayList<>();
+        Connection connection= getConnection();
+        try {
+            PreparedStatement preparedStatement= connection.prepareStatement(SELECT_TYPE);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                String id= resultSet.getString("type_id");
+                String name= resultSet.getString("name_type");
+                String taste= resultSet.getString("taste");
+                String status= resultSet.getString("status_type");
+
+                list.add(new TypeOfSupplement(id, name, taste,status));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }return list;
     }
 
     public Company findCompanyById(String companyId){

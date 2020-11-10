@@ -100,22 +100,10 @@
         <ul>
 
             <li><a href="#">Menu</a>
-                <ul>
-                    <li><a href="#">Chức năng 1</a></li>
-                    <li><a href="#">Chức năng 1</a></li>
-                    <li><a href="#">Chức năng 1e</a></li>
-                    <li><a href="#">Chức năng 1</a></li>
-                    <li><a href="#">Chức năng 1</a></li>
-                </ul>
+
             </li>
             <li><a href="#">Select </a>
-                <ul>
-                    <li><a href="#">lựa chọn 1</a></li>
-                    <li><a href="#">lựa chọn 1</a></li>
-                    <li><a href="#">lựa chọn 1</a></li>
-                    <li><a href="#">lựa chọn 1</a></li>
-                    <li><a href="#">lựa chọn 1</a></li>
-                </ul>
+
             </li>
             <li><a href="#">Tăng cân</a></li>
             <li><a href="#">Tăng cơ</a></li>
@@ -126,7 +114,7 @@
 </div>
 <div>
     <center>
-        <h2 align="center"><a href="/supplement?action=create" class="btn btn-success" >Add New Supplement</a></h2>
+        <h2 align="center"><a href="/supplement?action=create" class="btn btn-outline-primary" >Add New Supplement</a></h2>
     </center>
 </div>
 <%--<div>--%>
@@ -148,14 +136,14 @@
 <%--        </div>--%>
 <%--    </c:forEach>--%>
 <%--</div>--%>
-<div>
+<div align="center">
     <form action="/company">
-        <input type="submit" class="btn btn-btn-success" value="Company List">
+        <input type="submit" class="btn btn-outline-success" value="Company List">
     </form>
 </div>
-<div>
+<div align="center">
     <form action="/type">
-        <input type="submit" class="btn btn-btn-primary" value="Type of Supplements List">
+        <input type="submit" class="btn btn-outline-warning" value="Type of Supplements List">
     </form>
 </div>
 <div align="center">

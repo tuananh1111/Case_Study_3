@@ -52,24 +52,34 @@
                 <th>Company ID:</th>
 <%--                <td><input type="text" name="companyId" id="companyId" size="45"></td>--%>
                 <td>
-                    <select name="companyId" id="companyId">
-                        <option value="COM01">Nutrabolics</option>
-                        <option value="COM02">Evogen</option>
-                        <option value="COM03">BPI</option>
-                        <option value="COM04">Ghost</option>
-                    </select>
+<%--                    <select name="companyId" id="companyId">--%>
+<%--                        <option value="COM01">Nutrabolics</option>--%>
+<%--                        <option value="COM02">Evogen</option>--%>
+<%--                        <option value="COM03">BPI</option>--%>
+<%--                        <option value="COM04">Ghost</option>--%>
+<%--                    </select>--%>
+                     <select name="companyId">
+                         <c:forEach items='${requestScope["listCompany"]}' var="company" varStatus="loop">
+                            <option value="${company.getComName()}">${company.getComName()}</option>
+                         </c:forEach>
+                        </select>
                 </td>
             </tr>
             <tr>
                 <th>Type ID:</th>
 <%--                <td><input type="text" name="typeId" id="typeId" size="45"></td>--%>
                 <td>
-                    <select name="typeId" id="typeId">
-                        <option value="TE01">Tăng cơ</option>
-                        <option value="TE02">Tăng cân</option>
-                        <option value="TE03">Tăng sức mạnh</option>
-                        <option value="TE04">Tăng Testosteron</option>
-                    </select>
+<%--                    <select name="typeId" id="typeId">--%>
+<%--                        <option value="TE01">Tăng cơ</option>--%>
+<%--                        <option value="TE02">Tăng cân</option>--%>
+<%--                        <option value="TE03">Tăng sức mạnh</option>--%>
+<%--                        <option value="TE04">Tăng Testosteron</option>--%>
+<%--                    </select>--%>
+                      <select name="typeId">
+                              <c:forEach items='${requestScope["listType"]}' var="type" varStatus="loop">
+                                 <option value="${type.getTypeName()}">${type.getTypeName()}</option>
+                              </c:forEach>
+                      </select>
                 </td>
             </tr>
             <tr>
