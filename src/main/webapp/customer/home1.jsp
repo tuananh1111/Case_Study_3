@@ -105,7 +105,7 @@
             <!-- Image and text -->
             <nav class="navbar navbar-light bg-light">
                 <a class="navbar-brand" href="#">
-                    <img src="image/sup.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                    <img src="image/sup.png" width="75" height="75" class="d-inline-block align-top" alt="" loading="lazy">
                     SUPPLEMENT SHOP
                 </a>
             </nav>
@@ -166,14 +166,13 @@
                             <p>Tên sản phẩm: <c:out value="${supplement.getName()}"/></p>
                             <p>Khối lượng: <c:out value="${supplement.getMass()}"/> KG</p>
                             <p>Giá tiền: <c:out value="${supplement.getPrice()}"/> VNĐ</p>
-                            <p><a href="/home?action=view&id=${supplement.getId()}">Chi tiết sản phẩm</a></p>
                             <a href="/home?action=buy&id=${supplement.getId()}"><input type="submit" class="btn btn-outline-primary" value="Mua"></a>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#createCategoryModal">
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                    data-target="#createCategoryModal${supplement.getId()}">
                                 Xem chi tiết
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="createCategoryModal${supplement.getId()}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -184,10 +183,22 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Thông tin sản phẩm:</p>
-                                            <form method="post" action="/supplement?action=view">
+                                            <p>Mô tả sản phẩm:</p>
+                                            <form>
                                                 <div class="md-form mb-5">
-                                                    <input type="text" name="newInputName">
+                                                    <div class="container">
+                                                        <h2> Tên sản phẩm: ${supplement.getName()}</h2>
+                                                        <img src="${supplement.getImage()}" height="200px" width="200px">
+                                                        <h4>- Khối lượng: ${supplement.getMass()}</h4>
+                                                        <h4>- Giá: ${supplement.getPrice()}</h4>
+                                                        <h4>- Hãng: ${supplement.getCompany().comName}</h4>
+                                                        <h4>- Loại : ${supplement.getType().typeName}</h4>
+                                                        <h4>- Mùi vị: ${supplement.getType().taste}</h4>
+                                                        <h4>- Trạng thái: ${supplement.getType().status}</h4>
+                                                        <h6><i> * Dành cho người tập luyện thể chất *</i></h6>
+                                                        <div class="modal-footer">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close
