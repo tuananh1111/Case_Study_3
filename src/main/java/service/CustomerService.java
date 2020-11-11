@@ -1,6 +1,7 @@
 package service;
 
 import model.Company;
+import model.Customer;
 import model.Supplement;
 import model.TypeOfSupplement;
 
@@ -20,6 +21,8 @@ public class CustomerService  implements CService{
     private static final String SELECT_SUPPLEMENT_BY_COM02="select * from supplement where company_id='COM02';";
     private static final String SELECT_SUPPLEMENT_BY_COM03="select * from supplement where company_id='COM03';";
     private static final  String SEARCH= "select * from supplement where supplement.name_sup  like concat('%',?,'%');";
+    private static final String SELECT_ID= "select * from customer where username=?";
+
 
 
 
@@ -78,8 +81,85 @@ public class CustomerService  implements CService{
         return type;
 
     }
-    public void insertCustomer(){
 
+    public int findId(String username){
+        Connection connection= getConnection();
+        Customer customer = null;
+        try {
+            PreparedStatement preparedStatement= connection.prepareStatement(SELECT_ID);
+            preparedStatement.setString(1, username);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()){
+                 int id= resultSet.getInt("customer_id");
+                 String name= resultSet.getString("customer_name");
+                 String number= resultSet.getString("phone_number");
+                 String address= resultSet.getString("address_customer");
+                 String user= resultSet.getString("username");
+                 String pass= resultSet.getString("pass");
+                 customer= new Customer(id, name, number, address, user, pass);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customer.getCustomerId();
+    }
+
+    public String findPass(String name){
+        Connection connection= getConnection();
+        Customer customer= null;
+        try {
+            PreparedStatement preparedStatement= connection.prepareStatement(SELECT_ID);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet= preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int ID= resultSet.getInt("customer_id");
+                String  name1= resultSet.getString("customer_name");
+                String number= resultSet.getString("phone_number");
+                String address= resultSet.getString("address_customer");
+                String user= resultSet.getString("username");
+                String pass= resultSet.getString("pass");
+                customer= new Customer(ID, name1, number, address, user, pass);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customer.getPassword();
+    }
+    public Customer selectCustomer(String name){
+        Connection connection= getConnection();
+        Customer customer= null;
+        try {
+            PreparedStatement preparedStatement= connection.prepareStatement(SELECT_ID);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet= preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int ID= resultSet.getInt("customer_id");
+                String  name1= resultSet.getString("customer_name");
+                String number= resultSet.getString("phone_number");
+                String address= resultSet.getString("address_customer");
+                String user= resultSet.getString("username");
+                String pass= resultSet.getString("pass");
+                customer= new Customer(ID, name1, number, address, user, pass);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }return customer;
+    }
+
+    public void insertCustomer(Customer customer){
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement= connection.prepareStatement("insert into customer values (?,?,?,?,?,?);");
+            preparedStatement.setInt(1, customer.getCustomerId());
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setString(3, customer.getPhoneNumber());
+            preparedStatement.setString(4, customer.getAddress());
+            preparedStatement.setString(5, customer.getUserName());
+            preparedStatement.setString(6, customer.getPassword());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
     public List<Supplement> selectAllSupplement(){
         List<Supplement> list= new ArrayList<>();
@@ -223,6 +303,7 @@ public class CustomerService  implements CService{
 
                 list.add(new Supplement(id, name, image,mass,price, company1,type));
             }
+            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

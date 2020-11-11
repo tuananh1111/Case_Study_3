@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Customer" %><%--
   Created by IntelliJ IDEA.
   User: Pro 2004
   Date: 11/9/2020
@@ -120,38 +120,74 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Liên hệ</a>
                     </li>
+
                 </ul>
+<%--                <form class="form-inline my-2 my-lg-0" id="xinchao">--%>
+<%--                    <a href="">--%>
+<%--                        <%--%>
+<%--                            Customer customer = (Customer) session.getAttribute("customer");--%>
+<%--                            if(customer!=null){--%>
+<%--                                System.out.println("Hello "+ customer.getName());--%>
+<%--                            }%>--%>
+<%--                    </a>--%>
+<%--                </form>--%>
+                <div><c:if test='${requestScope["customer"] != null}'>
+                    <span class="message">Hello ${requestScope["customer"].getName()}</span>
+                </c:if></div>
                 <form class="form-inline my-2 my-lg-0" method="post" action="/home?action=search">
                     <input class="form-control mr-sm-2" type="search" name="search"  placeholder="Tên sản phẩm" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
                 </form>
                 <!-- Button trigger modal -->
                 <div>
-                    <a href="/home?action=login" class="btn btn-outline-primary">Đăng nhập</a>
+                    <a href="/home?action=login" class="btn btn-outline-primary" style="left: 8px">Đăng nhập</a>
                 </div>
             </div>
         </nav>
     </div>
+    <div class="nen">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="image/716813.png" alt="First slide" style="width: 50% ; height: 600px">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/904443.png" alt="Second slide" style="width: 50% ; height: 600px">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="image/911661.png" alt="Third slide" style="width: 50%; height: 600px">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
     <div id="head-link">
         <div id="menu">
             <ul>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Select </a></li>
-                <li><a href="#">Tăng cân</a></li>
-                <li><a href="#">Tăng sức mạnh</a></li>
+                <li><a href="#">Menu</a>
+                    <ul>
+                             <li><a href="/home?action=desc">Giá từ cao xuống thấp</a></li>
+                             <li><a href="/home?action=asc">Giá từ thấp lên cao</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Select </a>
+                    <ul>
+                        <li><a href="/home?action=evogen">Sản phẩm từ Evogen</a></li>
+                        <li><a href="/home?action=bpi">Sản phẩm từ BPI</a></li>
+                        <li><a href="/home?action=nutra">Sản phẩm từ Nutrabolics</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
     <hr>
-    <div id="left">
-        <ul>
-            <li><a href="/home?action=desc">Giá từ cao xuống thấp</a></li>
-            <li><a href="/home?action=asc">Giá từ thấp lên cao</a></li>
-            <li><a href="/home?action=evogen">Sản phẩm từ Evogen</a></li>
-            <li><a href="/home?action=bpi">Sản phẩm từ BPI</a></li>
-            <li><a href="/home?action=nutra">Sản phẩm từ Nutrabolics</a></li>
-        </ul>
-    </div>
     <div class="container" id="content">
         <p style="margin-top: 50px">SẢN PHẨM TẠI <b style="color: red">Supplement Shop (${listSupplement.size()} products)</b></p>
         <hr>
@@ -189,8 +225,8 @@
                                                     <div class="container">
                                                         <h2> Tên sản phẩm: ${supplement.getName()}</h2>
                                                         <img src="${supplement.getImage()}" height="200px" width="200px">
-                                                        <h4>- Khối lượng: ${supplement.getMass()}</h4>
-                                                        <h4>- Giá: ${supplement.getPrice()}</h4>
+                                                        <h4>- Khối lượng: ${supplement.getMass()} KG</h4>
+                                                        <h4>- Giá: ${supplement.getPrice()} VNĐ</h4>
                                                         <h4>- Hãng: ${supplement.getCompany().comName}</h4>
                                                         <h4>- Loại : ${supplement.getType().typeName}</h4>
                                                         <h4>- Mùi vị: ${supplement.getType().taste}</h4>

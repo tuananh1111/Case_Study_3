@@ -23,9 +23,16 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="background">
 
+</div>
 <div align="center">
-    <form method="post">
+    <form method="post" action="/home?action=register">
+        <div>
+            <c:if test='${requestScope["message"] != null}'>
+                <span class="message">${requestScope["message"]}</span>
+            </c:if>
+        </div>
         <table border="1" cellpadding="5">
             <tr>
                 <th>Full Name:</th>
@@ -54,6 +61,7 @@
             </tr>
         </table>
     </form>
+    <div><a href="/home ">Quay lại trang chủ</a></div>
 </div>
 </body>
 </html>
