@@ -23,46 +23,65 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="background">
+<style>
+    .background{
+        background-image: url("../image/background2.jpg");
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 0;
+        display: grid;
+        max-width: 100%;
+        max-height: 100vh;
+        margin: auto;
+    }
+    .back{
+        margin-top: 5%;
+    }
+</style>
+<div class="background" >
+    <div class="back">
+    </div>
+    <div align="center">
+        <form method="post" action="/home?action=register" style="left: 500px;top:300px; border: white" >
+            <div>
+                <c:if test='${requestScope["message"] != null}'>
+                    <span class="message">${requestScope["message"]}</span>
+                </c:if>
+            </div>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Full Name:</th>
+                    <td><input type="text" name="name" id="name" size="45"></td>
+                </tr>
+                <tr>
+                    <th>Phone Number:</th>
+                    <td><input type="text" name="number" id="number" size="45"></td>
+                </tr>
+                <tr>
+                    <th>Address:</th>
+                    <td><input type="text" name="address" id="address" size="50"></td>
+                </tr>
+                <tr>
+                    <th> Username:</th>
+                    <td><input type="text" name="username" id="username" size="50"></td>
+                </tr>
+                <tr>
+                    <th> Password:</th>
+                    <td><input type="text" name="password" id="password" size="50"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Save">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div><a href="/home ">Quay lại trang chủ</a></div>
+    </div>
+</div>
 
-</div>
-<div align="center">
-    <form method="post" action="/home?action=register">
-        <div>
-            <c:if test='${requestScope["message"] != null}'>
-                <span class="message">${requestScope["message"]}</span>
-            </c:if>
-        </div>
-        <table border="1" cellpadding="5">
-            <tr>
-                <th>Full Name:</th>
-                <td><input type="text" name="name" id="name" size="45"></td>
-            </tr>
-            <tr>
-                <th>Phone Number:</th>
-                <td><input type="text" name="number" id="number" size="45"></td>
-            </tr>
-            <tr>
-                <th>Address:</th>
-                <td><input type="text" name="address" id="address" size="50"></td>
-            </tr>
-            <tr>
-                <th> Username:</th>
-                <td><input type="text" name="username" id="username" size="50"></td>
-            </tr>
-            <tr>
-                <th> Password:</th>
-                <td><input type="text" name="password" id="password" size="50"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center">
-                    <input type="submit" value="Save">
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div><a href="/home ">Quay lại trang chủ</a></div>
-</div>
 </body>
 </html>
 

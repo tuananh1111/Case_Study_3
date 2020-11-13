@@ -51,6 +51,7 @@ public class SupplementService implements SService {
                 String address= resultSet.getString("company_address");
                 list.add(new Company(id, name, address));
             }
+            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }return list;
@@ -70,6 +71,7 @@ public class SupplementService implements SService {
 
                 list.add(new TypeOfSupplement(id, name, taste,status));
             }
+            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }return list;
@@ -89,6 +91,7 @@ public class SupplementService implements SService {
                  String address= resultSet.getString("company_address");
                  company = new Company(id,name,address);
              }
+             connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -110,6 +113,7 @@ public class SupplementService implements SService {
                 String status = resultSet.getString("status_type");
                 type = new TypeOfSupplement(id, name, taste,status);
             }
+            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -154,6 +158,7 @@ public class SupplementService implements SService {
                 list.add(new Supplement(id, name, image,mass,price, company1,type));
 
             }
+            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

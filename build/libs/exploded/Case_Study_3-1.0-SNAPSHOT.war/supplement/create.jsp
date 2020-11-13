@@ -60,7 +60,7 @@
 <%--                    </select>--%>
                      <select name="companyId">
                          <c:forEach items='${requestScope["listCompany"]}' var="company" varStatus="loop">
-                            <option value="${company.getComName()}">${company.getComName()}</option>
+                            <option value="${company.getComId()}">${company.getComName()}</option>
                          </c:forEach>
                         </select>
                 </td>
@@ -77,7 +77,7 @@
 <%--                    </select>--%>
                       <select name="typeId">
                               <c:forEach items='${requestScope["listType"]}' var="type" varStatus="loop">
-                                 <option value="${type.getTypeName()}">${type.getTypeName()}</option>
+                                 <option value="${type.getTypeId()}">${type.getTypeName()}</option>
                               </c:forEach>
                       </select>
                 </td>
