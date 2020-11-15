@@ -147,6 +147,7 @@
     </form>
 </div>
 <div align="center">
+    <div><h3>Danh sách sản phẩm</h3></div>
     <table border="1px">
         <tr>
             <th>ID</th>
@@ -164,7 +165,7 @@
                 <td>${sup.getName()}</td>
                 <td><img src="<c:out value="${sup.getImage()}"/>"  height="50px" width="50px"></td>
                 <td>${sup.getMass()}</td>
-                <td>${sup.getPrice()}</td>
+                <td>${nf.format(sup.getPrice())}</td>
                 <td>${sup.getCompany().comName}</td>
                 <td>${sup.getType().typeName}</td>
                 <td>

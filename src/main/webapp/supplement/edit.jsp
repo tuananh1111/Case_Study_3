@@ -44,7 +44,7 @@
                 <th>Supplement Name:</th>
                 <td>
                     <input type="text" name="name" size="45" value="<c:out value='${supplement.getName()}' />"
-                    />
+                    />-
                 </td>
             </tr>
             <tr>

@@ -44,7 +44,7 @@
                 <td>${supplement.getName()}</td>
                 <td>${supplement.getImage()}</td>
                 <td>${supplement.getMass()}</td>
-                <td>${supplement.getPrice()}</td>
+                <td>${nf.format(supplement.getPrice())}</td>
                 <td>${supplement.getCompany().comName}</td>
                 <td>${supplement.getType().typeName}</td>
             </tr>

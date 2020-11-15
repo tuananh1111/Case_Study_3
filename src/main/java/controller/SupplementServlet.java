@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet(name = "SupplementServlet" ,urlPatterns = "/supplement")
 public class SupplementServlet extends HttpServlet {
@@ -23,6 +25,8 @@ public class SupplementServlet extends HttpServlet {
     public void init(){
         service= new SupplementService();
     }
+    NumberFormat nf = NumberFormat.getInstance(new Locale("en", "US"));
+//    nf.format(cake.getPrice())
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -54,6 +58,7 @@ public class SupplementServlet extends HttpServlet {
         list= service.searchSupplement(nameSup);
         RequestDispatcher dispatcher= request.getRequestDispatcher("supplement/search.jsp");
         request.setAttribute("listSupplement",list);
+        request.setAttribute("nf",nf);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -112,6 +117,7 @@ public class SupplementServlet extends HttpServlet {
         int id= Integer.parseInt(request.getParameter("id"));
         Supplement supplement= service.select(id);
         request.setAttribute("supplement",supplement);
+        request.setAttribute("nf",nf);
         RequestDispatcher dispatcher= request.getRequestDispatcher("supplement/view.jsp");
         try {
             dispatcher.forward(request, response);
@@ -202,6 +208,7 @@ public class SupplementServlet extends HttpServlet {
     private void listSupplement(HttpServletRequest request, HttpServletResponse response) {
         List<Supplement> list= service.selectAll();
         request.setAttribute("listSupplement", list);
+        request.setAttribute("nf",nf);
         RequestDispatcher dispatcher= request.getRequestDispatcher("supplement/list.jsp");
         try {
             dispatcher.forward(request, response);

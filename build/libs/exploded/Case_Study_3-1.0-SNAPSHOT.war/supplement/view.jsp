@@ -38,19 +38,19 @@
             </tr>
             <tr>
                 <td>Mass:</td>
-                <td>${requestScope["supplement"].getMass()}</td>
+                <td>${requestScope["supplement"].getMass()} KG</td>
             </tr>
             <tr>
                 <td>Price:</td>
-                <td>${requestScope["supplement"].getPrice()}</td>
+                <td>${nf.format(requestScope["supplement"].getPrice())} VNĐ</td>
             </tr>
             <tr>
                 <td>Company ID:</td>
-                <td>${requestScope["supplement"].getCompany().comId}</td>
+                <td>${requestScope["supplement"].getCompany().comName}</td>
             </tr>
             <tr>
                 <td>Type ID:</td>
-                <td>${requestScope["supplement"].getType().typeId}</td>
+                <td>${requestScope["supplement"].getType().typeName}</td>
             </tr>
         </table>
     </form>

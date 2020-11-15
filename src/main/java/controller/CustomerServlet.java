@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet(name = "CustomerServlet", urlPatterns = "/home")
 public class CustomerServlet extends HttpServlet {
@@ -23,6 +25,8 @@ public class CustomerServlet extends HttpServlet {
     public void init(){
         service= new CustomerService();
     }
+    NumberFormat nf = NumberFormat.getInstance(new Locale("en", "US"));
+    //    nf.format(cake.getPrice())
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -78,6 +82,7 @@ public class CustomerServlet extends HttpServlet {
             RequestDispatcher dispatcher= request.getRequestDispatcher("supplement/list.jsp");
             try {
                 request.setAttribute("listSupplement",list);
+                request.setAttribute("nf",nf);
                 dispatcher.forward(request, response);
             } catch (ServletException e) {
                 e.printStackTrace();
@@ -90,6 +95,7 @@ public class CustomerServlet extends HttpServlet {
                 RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
                 request.setAttribute("customer",customer );
                 request.setAttribute("listSupplement",list);
+                request.setAttribute("nf",nf);
                 try {
                     dispatcher.forward(request, response);
                 } catch (ServletException e) {
@@ -99,6 +105,7 @@ public class CustomerServlet extends HttpServlet {
                 }
             }else {
                 RequestDispatcher dispatcher= request.getRequestDispatcher("customer/login1.jsp");
+                request.setAttribute("message","Sai thông tin tài khoản hoặc mật khẩu !!!");
                 try {
                     dispatcher.forward(request, response);
                 } catch (ServletException e) {
@@ -115,6 +122,7 @@ public class CustomerServlet extends HttpServlet {
         list= service.selectAsc();
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
         request.setAttribute("listSupplement",list);
+        request.setAttribute("nf",nf);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -129,6 +137,7 @@ public class CustomerServlet extends HttpServlet {
         List<Supplement> list= new ArrayList<>();
         list= service.searchSupplement(nameSup);
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
+        request.setAttribute("nf",nf);
         request.setAttribute("listSupplement",list);
         try {
             dispatcher.forward(request, response);
@@ -202,6 +211,7 @@ public class CustomerServlet extends HttpServlet {
         List<Supplement> list= service.selectBPI();
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
         request.setAttribute("listSupplement",list);
+        request.setAttribute("nf",nf);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -215,6 +225,7 @@ public class CustomerServlet extends HttpServlet {
         List<Supplement> list= service.selectNutrabolics();
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
         request.setAttribute("listSupplement",list);
+        request.setAttribute("nf",nf);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -228,6 +239,7 @@ public class CustomerServlet extends HttpServlet {
         List<Supplement> list= service.selectEvogen();
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
         request.setAttribute("listSupplement",list);
+        request.setAttribute("nf",nf);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -241,6 +253,7 @@ public class CustomerServlet extends HttpServlet {
         List<Supplement> list= service.selectDesc();
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
         request.setAttribute("listSupplement",list);
+        request.setAttribute("nf",nf);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -253,6 +266,7 @@ public class CustomerServlet extends HttpServlet {
     private void listSupplement(HttpServletRequest request, HttpServletResponse response) {
         List<Supplement> list= service.selectAllSupplement();
         RequestDispatcher dispatcher= request.getRequestDispatcher("customer/home1.jsp");
+        request.setAttribute("nf",nf);
         request.setAttribute("listSupplement", list);
         try {
             dispatcher.forward(request, response);

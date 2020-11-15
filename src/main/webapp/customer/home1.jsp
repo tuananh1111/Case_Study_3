@@ -201,7 +201,7 @@
                         <div class="service_infor">
                             <p>Tên sản phẩm: <c:out value="${supplement.getName()}"/></p>
                             <p>Khối lượng: <c:out value="${supplement.getMass()}"/> KG</p>
-                            <p>Giá tiền: <c:out value="${supplement.getPrice()}"/> VNĐ</p>
+                            <p>Giá tiền: <c:out value="${nf.format(supplement.getPrice())}"/> VNĐ</p>
                             <a href="/home?action=buy&id=${supplement.getId()}"><input type="submit" class="btn btn-outline-primary" value="Mua"></a>
                             <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#createCategoryModal${supplement.getId()}">
@@ -226,7 +226,7 @@
                                                         <h2> Tên sản phẩm: ${supplement.getName()}</h2>
                                                         <img src="${supplement.getImage()}" height="200px" width="200px">
                                                         <h4>- Khối lượng: ${supplement.getMass()} KG</h4>
-                                                        <h4>- Giá: ${supplement.getPrice()} VNĐ</h4>
+                                                        <h4>- Giá: ${nf.format(supplement.getPrice())} VNĐ</h4>
                                                         <h4>- Hãng: ${supplement.getCompany().comName}</h4>
                                                         <h4>- Loại : ${supplement.getType().typeName}</h4>
                                                         <h4>- Mùi vị: ${supplement.getType().taste}</h4>

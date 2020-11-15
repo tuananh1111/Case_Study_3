@@ -25,7 +25,7 @@
 <body>
 <style>
     .background{
-        background-image: url("../image/background2.jpg");
+        /*background-image: url("../image/background2.jpg");*/
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
